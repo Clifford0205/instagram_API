@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <!-- <button class="authorize" onClick="authFunc()">IG登入</button> -->
+    <div class="container"></div>
+
+</body>
+
+<script>
+    if (window.location.hash == false) {
+        authFunc()
+    }
+
+    function authFunc() {
+        var getAuthUrl = "https://api.instagram.com/oauth/authorize/?client_id=	6fe56d2b6d6247e487526e2cb80d5624&redirect_uri=http://files.wwmt.com.tw/IG_test&response_type=token";
+
+        window.location.href = getAuthUrl;
+    }
+
+    // authFunc()
+    console.log(window.location.hash == false);
+
+
+    var accessToken = window.location.hash.replace('#', '?')
+    console.log(accessToken);
+
+
+    if (accessToken) {
+        axios.get('https://api.instagram.com/v1/users/self/media/recent/' + accessToken)
+            .then(res => res.data.data)
+            .then(thedata => thedata.map(function (item) {
+                var img = document.createElement('img');
+                img.src = item.images.low_resolution.url;
+                document.querySelector(".container").appendChild(img);
+            }))
+            .catch(error => console.log(error));
+    }
+
+    console.log(accessToken);
+
+</script>
+
+</html>

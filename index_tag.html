@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <!-- <button class="authorize" onClick="authFunc()">IG登入</button> -->
+    <div class="container"></div>
+
+</body>
+
+<script>
+
+
+    window.onload = function () {
+        axios.get('https://api.instagram.com/v1/tags/coke/media/recent/' + '?access_token=6055925685.6fe56d2.06c903a5f92f4fc7ae25f914db53a3ab&' + 'scope=public_content')
+            .then(res => console.log(res))
+            // .then(thedata => thedata.map(function (item) {
+            //     var img = document.createElement('img');
+            //     img.src = item.images.low_resolution.url;
+            //     document.querySelector(".container").appendChild(img);
+            // }))
+            .catch(error => console.log(error));
+    }
+
+
+
+</script>
+
+</html>
