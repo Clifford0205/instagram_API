@@ -10,18 +10,18 @@
 </head>
 
 <body>
-    <!-- <button class="authorize" onClick="authFunc()">IG登入</button> -->
+    <button class="authorize" onClick="authFunc()">IG登入</button>
     <div class="container"></div>
 
 </body>
 
 <script>
-    if (window.location.hash == false) {
-        authFunc()
-    }
+    // if (window.location.hash == false) {
+    //     authFunc()
+    // }
 
     function authFunc() {
-        var getAuthUrl = "https://api.instagram.com/oauth/authorize/?client_id=	6fe56d2b6d6247e487526e2cb80d5624&redirect_uri=http://files.wwmt.com.tw/IG_test&response_type=token";
+        var getAuthUrl = "https://api.instagram.com/oauth/authorize/?client_id=	6fe56d2b6d6247e487526e2cb80d5624&redirect_uri=http://127.0.0.1:5500/index.html&response_type=token&scope=basic";
 
         window.location.href = getAuthUrl;
     }
@@ -36,7 +36,7 @@
 
     if (accessToken) {
         axios.get('https://api.instagram.com/v1/users/self/media/recent/' + accessToken)
-            .then(res => res.data.data)
+            .then(res => { console.log(res.data.data); return res.data.data })
             .then(thedata => thedata.map(function (item) {
                 var img = document.createElement('img');
                 img.src = item.images.low_resolution.url;

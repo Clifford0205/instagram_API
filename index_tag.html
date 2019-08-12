@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://www.jqueryscript.net/demo/instagram-feed-hashtag-story/hashtaghistory.js"></script>
 </head>
 
 <body>
@@ -18,16 +20,14 @@
 <script>
 
 
-    window.onload = function () {
-        axios.get('https://api.instagram.com/v1/tags/coke/media/recent/' + '?access_token=6055925685.6fe56d2.06c903a5f92f4fc7ae25f914db53a3ab&' + 'scope=public_content')
-            .then(res => console.log(res))
-            // .then(thedata => thedata.map(function (item) {
-            //     var img = document.createElement('img');
-            //     img.src = item.images.low_resolution.url;
-            //     document.querySelector(".container").appendChild(img);
-            // }))
-            .catch(error => console.log(error));
-    }
+    $(".container").hashtaghistory({
+        hashtag: "奇瑞斯",
+        limit: 9,
+        imageSize: 240,
+        link: true
+
+
+    });
 
 
 
